@@ -51,3 +51,4 @@ print(float(10))  # 10.0
 print(int(3.14))  # 3
 print(int("100"))  # 100
 print(float("3.14"))  # 3.14
+print(str(100))  # "100"
