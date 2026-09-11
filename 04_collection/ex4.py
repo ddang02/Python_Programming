@@ -6,9 +6,9 @@
 
 t = (1, 1, 2, 2, 2)
 
-print(t.count(1))                   # 1이 몇개 있는지?
+print(t.count(1))  # 1이 몇개 있는지?
 
-print(t.index(2))                   # 2의 첫번째 인덱스는?
+print(t.index(2))  # 2의 첫번째 인덱스는?
 
 # ===========================================================
 #  그 외
@@ -24,7 +24,7 @@ print(t)
 
 # 튜플을 이용해서 swap하기
 a, b = 10, 20
-a,b = b, a
+a, b = b, a
 print(a, b)
 
 # 튜플 언패킹
@@ -33,7 +33,7 @@ t = (1, 2, 3, 4)
 print(*t)
 
 a, b, c, d = t
-print(a,b,c,d)
+print(a, b, c, d)
 
 a, *b, c = t
 print(a, b, c)
@@ -55,7 +55,7 @@ print(tuple(zip(subjects, scores)))
 # ===========================================================
 
 # Generator 표현식
-gen = (x for x in range(1,11))
+gen = (x for x in range(1, 11))
 print(gen)
 
 print(next(gen))
@@ -64,13 +64,13 @@ print(next(gen))
 
 # Generator는 순회가 끝나면 소진됨
 for i in gen:
-    print(i, end= " ")
+    print(i, end=" ")
 print()
 
 # List Comprehension vs Generator 표현식
-a = [x for x in range(1,11)]
-b = (x for x in range(1,11))
-print(a,b)
+a = [x for x in range(1, 11)]
+b = (x for x in range(1, 11))
+print(a, b)
 
 print(sum(a), sum(b))
 print(sum(b), sum(a))
@@ -78,17 +78,16 @@ print(sum(b), sum(a))
 
 # 1 ~ 10의 제곱수 튜플 만들기
 # ()는 튜플이 아니라 generator를 생성하는 generator 표현식임
-result = tuple(x ** 2 for x in range(1,11))
+result = tuple(x**2 for x in range(1, 11))
 print(result)
 
 # tuple의 생성자에 generator를 넘겨 값을 순회하면서 튜플을 만듦
 
 
-
 # 두 점의 x, y, z축 좌표값끼리 더한 튜플을 만들기
 p1 = (1, 2, 3)
 p2 = (10, 20, 30)
-result = (tuple(a + b for a,b in zip(p1,p2)))
+result = tuple(a + b for a, b in zip(p1, p2))
 
 
 # =========================================================
@@ -96,7 +95,7 @@ result = (tuple(a + b for a,b in zip(p1,p2)))
 # =========================================================
 
 # 일주일 동안의 학습 시간을 저장한 튜플
-days = ("일","월","화","수","목","금","토")
+days = ("일", "월", "화", "수", "목", "금", "토")
 hours = (2, 3, 1, 4, 5, 2, 6)
 
 # 1️⃣ 월 ~ 금까지 총 학습시간 출력하기
@@ -114,7 +113,9 @@ print(f"{max_day}요일")  # ✅ 토요일
 # 4️⃣ 가장 높은 점수와 가장 낮은 점수 출력하기
 scores = (90, 85, 78, 92, 88, 76)
 
-print(f"max 점수: {max(scores)}점, min 점수: {min(scores)}점")  # ✅ max 점수: 92점, min 점수: 76점
+print(
+    f"max 점수: {max(scores)}점, min 점수: {min(scores)}점"
+)  # ✅ max 점수: 92점, min 점수: 76점
 
 # 5️⃣ 과일가게 총 재고 금액 구하기
 stocks = (
@@ -125,10 +126,28 @@ stocks = (
 
 # 품목, 가격, 수량 튜플 만들기
 
-products = tuple(stock[0] for stock in stocks)      # ✅ ('사과', '바나나', '체리')
-prices = tuple(stock[1] for stock in stocks)        # ✅ (1000, 2000, 5000)
-quantities = tuple(stock[2] for stock in stocks)    # ✅ (5, 3, 2)
-     
+products = tuple(stock[0] for stock in stocks)  # ✅ ('사과', '바나나', '체리')
+prices = tuple(stock[1] for stock in stocks)  # ✅ (1000, 2000, 5000)
+quantities = tuple(stock[2] for stock in stocks)  # ✅ (5, 3, 2)
+
 # 총 재고 금액 출력
+
 total = sum(price * quantity for price, quantity in zip(prices, quantities))
-print(f"총 재고 금액: {total}원")  # ✅ 총액: 21,000원
+# total = sum(price * quantity for price, quantity in zip(prices, quantities))
+print(f"총액: {total}원")  # ✅ 총액: 21,000원
+
+stocks = (
+    ("사과", "바나나", "체리"),
+    (1000, 2000, 5000),
+    (5, 3, 2),
+)
+
+total = sum(price * quantity for price, quantity in zip(stocks[1], stocks[2]))
+
+# products = tuple(stock for stock in stocks[0])
+# prices = tuple(stock for stock in stocks[1])
+# quantities = tuple(stock for stock in stocks[2])
+
+# total = sum(price * quantity for price, quantity in zip(prices, quantities))
+
+print(f"총액: {total}원")
